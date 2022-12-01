@@ -1,27 +1,25 @@
-<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-    Delete
-</button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Mark</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ persona.id }}">Delete</button>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal{{ persona.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete {{ persona.name }} {{ persona.lastName }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action={% url 'modal:deleteModal' %} method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="persona_id" value="{{persona.id}}" />
         <div class="modal-body">
-            <h2>
-                Are you sure you want to delete this data? 
-            </h2> 
-            <h2>
-                This action cannot be reversed.
-            </h2>
+          <h2>Are you sure you want to delete {{ persona.name }} {{ persona.lastName }}?</h2>
+          <h2>This action cannot be reversed.</h2>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger">Delete Data</button>
+          <button type="submit" class="btn btn-danger">Delete Data</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
+</div>

@@ -1,50 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="home" style="margin-top:10rem;">
-
+  <section class="home" style="margin: 4rem;">
     <div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            {% include 'modal/pages/partialmodal/createmodal.html' %}
-        </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        {% include 'modal/pages/partialmodal/createmodal.html' %}
+      </div>
     </div>
 
-    <hr>
-    <table class="table table-striped table-hover">
-        <thead>
-      <tr>
-          <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Fist Name</th>
-        <th scope="col">Data Create</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>20/12/2022</td>
-        <td>
-          {% include 'modal/pages/partialmodal/editmodal.html' %}
-          {% include 'modal/pages/partialmodal/deletemodal.html' %}
-        </td>
-      </tr>
-      <tr>
-          <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>20/12/2022</td>
-
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry the Bird</td>
-        <td>Thornton</td>
-        <td>20/12/2022</td>
-
-    </tr>
-</tbody>
-</table>
-</section>
+    <hr />
+    <table class="table table-striped table-hover text-center">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Fist Name</th>
+          <th scope="col">Data Create</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for persona in personas %}
+          <tr>
+            <td>{{ persona.name }}</td>
+            <td>{{ persona.fistName }}</td>
+            <td>{{ persona.data|date:"d/m/y" }}</td>
+            <td>
+              {% include 'modal/pages/partialmodal/editmodal.html' %}
+              {% include 'modal/pages/partialmodal/deletemodal.html' %}
+            </td>
+          </tr>
+        {% empty %}
+          <h3 style="text-align: center;">Sorry, no data in this list.</h3>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
 {% endblock %}
