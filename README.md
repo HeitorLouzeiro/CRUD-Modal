@@ -151,7 +151,7 @@ This project was made to show how to CRUD with boostrap's modal together with Dj
 
     * Windows 
     ```sh
-     venv/scripts/activate
+     venv\scripts\activate
     ```
 
 5. Install as dependencies.
